@@ -6,22 +6,23 @@ const Constraint = Matter.Constraint;
 var engine, world;
 var backgroundImg;
 
-var bg ;
+var bg,bgImg;
 
 function preload() {
     // create getBackgroundImg( ) here
-    backgroundImg=loadImage("sunrise1.png")
-    backgroundImg=loadImage("sunrise2.png")
-    backgroundImg=loadImage("sunrise3.png")
-    backgroundImg=loadImage("sunrise4.png")
-    backgroundImg=loadImage("sunrise5.png")
-    backgroundImg=loadImage("sunrise6.png")
-    backgroundImg=loadImage("sunset7.png")
-    backgroundImg=loadImage("sunset8.png")
-    backgroundImg=loadImage("sunset9.png")
-    backgroundImg=loadImage("sunset10.png")
-    backgroundImg=loadImage("sunset11.png")
-    backgroundImg=loadImage("sunset12.png")
+    bgImg=loadImage("sunrise1.png")
+    bgImg=loadImage("sunrise2.png")
+    bgImg=loadImage("sunrise3.png")
+    bgImg=loadImage("sunrise4.png")
+    bgImg=loadImage("sunrise5.png")
+    bgImg=loadImage("sunrise6.png")
+    bgImg=loadImage("sunset7.png")
+    bgImg=loadImage("sunset8.png")
+    bgImg=loadImage("sunset9.png")
+    bgImg=loadImage("sunset10.png")
+    bgImg=loadImage("sunset11.png")
+    bgImg=loadImage("sunset12.png")
+  
 
 }
 
@@ -49,32 +50,31 @@ function draw(){
 
 async function getBackgroundImg(){
 
-    // write code to fetch time from API
-    var response=await fetch("http://worldtimeapi.org/api/timezone/Asia/Kolkata")
-
-    //change the data in JSON format
-    var responseJSON=await response.json()
+    var response=await fetch("http://worldtimeapi.org/api/timezone/Asia/kolkata")
+   var responseJSON=await response.json()
+   var dateTime=responseJSON.datetime
+   var hour=dateTime.slice(11,13)
+   //console.log(hour)
    
-    // write code slice the datetime
-    var dateTime=responseJSON.datetime 
-    var hour=dateTime.slice(11,13)
     // add conditions to change the background images from sunrise to sunset
-   if(hour>=5&&hour<=18){
-        bg="sunrise1.png"
-        bg="sunrise2.png"
-        bg="sunrise3.png"
-        bg="sunrise4.png"
-        bg="sunrise5.png"
-        bg="sunrise6.png"
-   }else{
-       bg="sunset7.png"
-       bg="sunset8.png"
-       bg="sunset9.png"
-       bg="sunset10.png"
-       bg="sunset11.png"
+    if(hour>=6&&hour<=10){
+        bg="sunrise1.png",
+        bg="sunrise2.png",
+        bg="sunrise3.png",
+        bg="sunrise4.png",
+        bg="sunrise5.png",
+        bg="sunrise6.png",
+        console.log("insideif")
+     }else{
+       bg="sunset7.png",
+       bg="sunset8.png",
+       bg="sunset9.png",
+       bg="sunset10.png",
+       bg="sunset11.png",
        bg="sunset12.png"
-   }
+     }
+     backgroundImg = loadImage(bg)
 
-    //load the image in backgroundImg variable here
-    backgroundImg=loadImage(bg)
+    
 }
+
