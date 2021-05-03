@@ -50,14 +50,14 @@ function draw(){
 
 async function getBackgroundImg(){
 
-    var response=await fetch("http://worldtimeapi.org/api/timezone/Asia/kolkata")
+    var response=await fetch("https://worldtimeapi.org/api/timezone/Asia/kolkata")
    var responseJSON=await response.json()
    var dateTime=responseJSON.datetime
    var hour=dateTime.slice(11,13)
    //console.log(hour)
    
     // add conditions to change the background images from sunrise to sunset
-    if(hour>=6&&hour<=10){
+    if(hour>=5&&hour<=15){
         bg="sunrise1.png",
         bg="sunrise2.png",
         bg="sunrise3.png",
@@ -65,7 +65,7 @@ async function getBackgroundImg(){
         bg="sunrise5.png",
         bg="sunrise6.png",
         console.log("insideif")
-     }else{
+     }else if(hour>=16&&hour<=24){
        bg="sunset7.png",
        bg="sunset8.png",
        bg="sunset9.png",
